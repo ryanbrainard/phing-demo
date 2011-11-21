@@ -1,0 +1,8 @@
+<project name="Sample Phing Build" default="www">
+    <target id="something" name="www">
+        <fail unless="WWW_DOCUMENT_ROOT" message="WWW_DOCUMENT_ROOT is not set"/>
+        <copy todir="${WWW_DOCUMENT_ROOT}">
+            <fileset dir="src/main/php"/>
+        </copy>
+    </target>
+</project>
