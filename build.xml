@@ -1,14 +1,21 @@
 <?xml version='1.0'?>
-<project name="Sample Phing Build" default="www">
+<project name="Sample Phing Build" default="stage">
 
     <target name="clean">
-        <delete dir="${WWW_DOCUMENT_ROOT}"/>
+        <delete dir="${PUBLIC_HTML_DIR}"/>
+        <delete dir="${PRIVATE_DIR}"/>
     </target>
 
-    <target name="www">
-        <fail unless="WWW_DOCUMENT_ROOT" message="WWW_DOCUMENT_ROOT is not set"/>
-        <copy todir="${WWW_DOCUMENT_ROOT}">
+    <target name="stage">
+        <fail unless="PUBLIC_HTML_DIR" message="PUBLIC_HTML_DIR must be set"/>
+        <fail unless="PRIVATE_DIR" message="PRIVATE_DIR must be set"/>
+
+        <copy todir="${PUBLIC_HTML_DIR}">
             <fileset dir="src/main/php"/>
+        </copy>
+        
+         <copy todir="${PRIVATE_DIR}/config">
+            <fileset dir="src/main/config"/>
         </copy>
     </target>
 
