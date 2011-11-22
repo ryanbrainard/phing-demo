@@ -2,19 +2,19 @@
 <project name="Sample Phing Build" default="stage">
 
     <target name="clean">
-        <delete dir="${PUBLIC_HTML_DIR}"/>
-        <delete dir="${PRIVATE_DIR}"/>
+        <delete dir="${env.PUBLIC_HTML_DIR}"/>
+        <delete dir="${env.PRIVATE_DIR}"/>
     </target>
 
     <target name="stage">
-        <fail unless="PUBLIC_HTML_DIR" message="PUBLIC_HTML_DIR must be set"/>
-        <fail unless="PRIVATE_DIR" message="PRIVATE_DIR must be set"/>
+        <fail unless="env.PUBLIC_HTML_DIR" message="Environment variable PUBLIC_HTML_DIR must be set"/>
+        <fail unless="env.PRIVATE_DIR" message="Environment variable PRIVATE_DIR must be set"/>
 
-        <copy todir="${PUBLIC_HTML_DIR}">
+        <copy todir="${env.PUBLIC_HTML_DIR}">
             <fileset dir="src/main/php"/>
         </copy>
         
-         <copy todir="${PRIVATE_DIR}/config">
+         <copy todir="${env.PRIVATE_DIR}/config">
             <fileset dir="src/main/config"/>
         </copy>
     </target>
